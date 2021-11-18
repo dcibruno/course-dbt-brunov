@@ -78,3 +78,26 @@
 ```
 
 - R: 25 users have made 1 purchase; 25 users have made 2 purchases and 78 users have made 3+ purchases.
+
+### Q5: On average, how many unique sessions do we have per hour?
+- Query
+```
+  with orders_per_hour as (
+    select
+        extract(hour from created_at) as hour
+        , count(distinct session_id) as count_of_distinct_sessions
+    from 
+        "stg_public__events" 
+    where 
+        created_at is not null 
+    group by
+        hour
+  )
+
+  select
+      round(avg(count_of_distinct_sessions), 0) as avg_distinct_sessions_per_hour
+  from
+      orders_per_hour;
+```
+
+- R: 123 orders / hour, on average.
