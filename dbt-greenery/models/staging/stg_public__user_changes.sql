@@ -13,10 +13,10 @@ select
     , last_name
     , email
     , phone_number
-    , created_at
-    , updated_at
+    , created_at::timestamp as created_at
+    , updated_at::timestamp as updated_at
     , address_id
-    , dbt_updated_at
-    , dbt_valid_from
-    , dbt_valid_to
+    , dbt_updated_at::timestamp as dbt_updated_at
+    , dbt_valid_from::timestamp as dbt_valid_from
+    , dbt_valid_to::timestamp as dbt_valid_to
 from {{ ref('users_snapshot') }}

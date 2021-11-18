@@ -15,13 +15,13 @@ select
     , user_id
     , promo_id
     , address_id
-    , created_at
+    , created_at::timestamp as created_at
     , order_cost
     , shipping_cost
     , order_total
     , tracking_id
     , shipping_service
-    , estimated_delivery_at
-    , delivered_at
+    , estimated_delivery_at::timestamp as estimated_delivery_at
+    , delivered_at::timestamp as delivered_at
     , status
 from orders_source

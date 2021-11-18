@@ -15,6 +15,6 @@ select
     , session_id
     , user_id
     , page_url
-    , created_at
+    , created_at::timestamp as created_at
     , event_type
 from events_source

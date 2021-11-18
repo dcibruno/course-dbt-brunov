@@ -22,7 +22,8 @@
     from 
         "stg_public__orders" 
     where 
-        created_at is not null group by hour
+        created_at is not null 
+    group by hour
   )
 
   select
@@ -32,3 +33,5 @@
 ```
 
 - R: 16 orders / hour, on average
+
+### Q3: On average, how long does an order take from being placed to being delivered?

@@ -16,7 +16,7 @@ select
     , last_name
     , email
     , phone_number
-    , created_at
-    , updated_at
+    , created_at::timestamp as created_at
+    , updated_at::timestamp as updated_at
     , address_id
 from users_source
