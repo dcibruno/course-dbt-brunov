@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: stg_public__addresses
+  - name: stg_public__events
+  - name: stg_public__order_items
+  - name: stg_public__orders
+  - name: stg_public__products
+  - name: stg_public__promos
+  - name: stg_public__users

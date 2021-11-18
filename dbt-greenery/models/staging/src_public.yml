@@ -1,0 +1,95 @@
+version: 2
+
+sources:
+
+  - name: src_public 
+    schema: public
+    database: dbt
+
+    quoting:
+      database: false
+      schema: false
+      identifier: false
+
+    freshness:
+      warn_after: {count: 24, period: hour}
+      error_after: {count: 48, period: hour}
+
+    tables:
+      - name: addresses
+        description: >
+          Contains detailed information about each address.
+        columns:
+          - name: id
+          - name: address_id
+          - name: address
+          - name: zipcode
+          - name: state
+          - name: country
+      - name: events
+        description: >
+          Contains information about every tracked event.
+        columns:
+          - name: id
+          - name: event_id
+          - name: session_id
+          - name: user_id
+          - name: page_url
+          - name: created_at
+          - name: event_type
+      - name: order_items
+        description: >
+          Contains information about products (_id) sold by order (_id). The primary key = "order id || product_id".
+        columns:
+          - name: id
+          - name: order_id
+          - name: product_id
+          - name: quantity
+      - name: orders
+        description: >
+         One record per order.
+        columns:
+          - name: id
+          - name: order_id
+          - name: user_id
+          - name: promo_id
+          - name: address_id
+          - name: created_at
+          - name: order_cost
+          - name: shipping_cost
+          - name: order_total
+          - name: tracking_id
+          - name: shipping_service
+          - name: estimated_delivery_at
+          - name: delivered_at
+          - name: status
+      - name: products
+        description: >
+          Contains information for each product.
+        columns:
+          - name: id
+          - name: product_id
+          - name: name
+          - name: price
+          - name: quantity
+      - name: promos
+        description: >
+          Contains discount value for active and inactive promos.
+        columns:
+          - name: id
+          - name: promo_id
+          - name: discout
+          - name: status
+      - name: users
+        description: >
+          Contains detailed information about each user.
+        columns:
+          - name: id
+          - name: user_id
+          - name: first_name
+          - name: last_name
+          - name: email
+          - name: phone_number
+          - name: created_at
+          - name: updated_at
+          - name: address_id
