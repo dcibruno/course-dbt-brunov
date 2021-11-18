@@ -2,5 +2,5 @@
 
 - My dbt repo for co:rise Analytics engineering with dbt course! :)
 
-## Useful link:
-Gitpo - dbt Course: https://gitpod.io/workspaces
+## Useful links:
+Gitpod - dbt Course: https://gitpod.io/workspaces
