@@ -32,6 +32,18 @@
       orders_per_hour;
 ```
 
-- R: 16 orders / hour, on average
+- R: 16 orders / hour, on average.
 
 ### Q3: On average, how long does an order take from being placed to being delivered?
+- Query
+```
+  select
+      round(avg(date_part('day', delivered_at - created_at))::numeric, 0) as order_placed_to_delivery
+  from
+      "stg_public__orders"
+  where
+      created_at is not null
+      and delivered_at is not null;
+```
+
+- R: 4 days, on average.
