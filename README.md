@@ -100,4 +100,4 @@
       orders_per_hour;
 ```
 
-- R: 123 orders / hour, on average.
+- R: 123 unique sessions / hour, on average.
