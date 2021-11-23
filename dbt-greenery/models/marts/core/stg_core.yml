@@ -1,0 +1,6 @@
+version: 2
+
+models:
+  - name: dim_users
+  - name: fact_orders
+  - name: int_users
