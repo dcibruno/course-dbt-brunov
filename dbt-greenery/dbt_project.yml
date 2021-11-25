@@ -36,3 +36,14 @@ models:
 
       staging:
           +materialized: table
+      
+      marts:
+          core:
+            intermediate:
+                +materialized: table
+          marketing:
+            intermediate:
+                +materialized: table
+          product:
+            intermediate:
+                +materialized: table

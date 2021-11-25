@@ -1,0 +1,5 @@
+version: 2
+
+models:
+  - name: dim_user_facts
+  - name: int_user_coupons_usage
