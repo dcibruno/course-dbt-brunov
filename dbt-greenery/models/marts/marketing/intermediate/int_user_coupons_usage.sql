@@ -12,11 +12,11 @@ with coupons_usage as (
         , orders.user_id
         , promos.discount
         , case when promos.promo_id is not null then true else false end as has_coupon
-        , coalesce(promos.discount, 0) + order_total as order_subtotal
         , order_total
     from {{ ref('stg_public__orders') }} as orders
     left join {{ ref('stg_public__promos') }} as promos
         on orders.promo_id = promos.promo_id
+    where orders.status = 'delivered'
     
 ), 
 

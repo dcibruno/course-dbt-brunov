@@ -8,10 +8,10 @@
 with users_first_last_data as (
     select distinct
         user_id
-        , first_value(order_id) over (partition by user_id order by created_at) as first_order_id
-        , last_value(order_id) over (partition by user_id order by created_at) as last_order_id
-        , date_part('day', current_date::timestamp - last_value(created_at) over (partition by user_id order by created_at))::numeric as purchase_recency
-        , date_part('day', current_date::timestamp - first_value(created_at) over (partition by user_id order by created_at))::numeric as customer_tenure
+        , first_value(order_id) over (partition by user_id order by created_at asc) as first_order_id
+        , first_value(order_id) over (partition by user_id order by created_at desc) as last_order_id
+        , date_part('day', current_date::timestamp - first_value(created_at) over (partition by user_id order by created_at desc))::numeric as purchase_recency
+        , date_part('day', current_date::timestamp - first_value(created_at) over (partition by user_id order by created_at asc))::numeric as customer_tenure
     from {{ ref('stg_public__orders') }}
     where status = 'delivered'
 ),
