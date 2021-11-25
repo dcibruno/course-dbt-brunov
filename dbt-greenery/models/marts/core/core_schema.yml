@@ -2,5 +2,70 @@ version: 2
 
 models:
   - name: dim_users
+    columns:
+      - name: user_id
+        tests:
+          - unique:
+              severity: warn
+          - not_null
+      - name: first_name
+      - name: last_name
+      - name: email
+      - name: phone_number
+      - name: created_at
+      - name: updated_at
+      - name: address_id
+      - name: first_order_id
+      - name: last_order_id
+      - name: purchase_recency
+      - name: customer_tenure
+      - name: count_of_orders
+      - name: customer_new_v_repeat
+      - name: total_spent
+
   - name: fact_orders
+    columns:
+      - name: order_id
+        tests:
+          - unique:
+              severity: warn
+          - not_null
+      - name: user_id
+      - name: first_name
+      - name: last_name
+      - name: email
+      - name: phone_number
+      - name: promo_id
+      - name: promo_discount
+      - name: promo_status
+      - name: address_id
+      - name: address
+      - name: state
+      - name: country
+      - name: created_at
+      - name: order_cost
+      - name: shipping_cost
+      - name: order_total
+      - name: tracking_id
+      - name: shipping_service
+      - name: estimated_delivery_at
+      - name: delivered_at
+      - name: order_status
+
   - name: int_users
+    columns:
+      - name: user_id
+        tests:
+          - unique:
+              severity: warn
+          - not_null
+      - name: first_order_id
+      - name: last_order_id
+      - name: purchase_recency
+      - name: customer_tenure
+      - name: count_of_orders
+      - name: customer_new_v_repeat
+      - name: total_spent
+      - name: zipcode
+      - name: state
+      - name: country

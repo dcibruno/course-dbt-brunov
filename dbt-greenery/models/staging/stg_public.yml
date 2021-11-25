@@ -2,9 +2,128 @@ version: 2
 
 models:
   - name: stg_public__addresses
+    columns:
+      - name: id
+      - name: address_id
+        tests:
+          - unique:
+              severity: warn
+          - not_null
+      - name: address
+      - name: zipcode
+      - name: state
+      - name: country
+        tests:
+          - not_null:
+              severity: warn
+              warn_if: "> 10"
+
   - name: stg_public__events
+    columns:
+      - name: id
+      - name: event_id
+        tests:
+          - unique:
+              severity: warn
+          - not_null
+      - name: session_id
+      - name: user_id
+      - name: page_url
+      - name: created_at
+      - name: event_type
+
   - name: stg_public__order_items
+    columns:
+      - name: order_item_id
+        tests:
+          - unique:
+              severity: warn
+          - not_null
+      - name: id
+      - name: order_id
+      - name: product_id
+      - name: quantity
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+
   - name: stg_public__orders
+    columns:
+      - name: id
+      - name: order_id
+        tests:
+          - unique:
+              severity: warn
+          - not_null
+      - name: user_id
+      - name: promo_id
+      - name: address_id
+      - name: created_at
+      - name: order_cost
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+      - name: shipping_cost
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+      - name: order_total
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+      - name: tracking_id
+      - name: shipping_service
+      - name: estimated_delivery_at
+      - name: delivered_at
+      - name: status
+        tests:
+          - accepted_values:
+              values: ['pending', 'shipped', 'preparing', 'delivered']
+
   - name: stg_public__products
+    columns:
+      - name: id
+      - name: product_id
+        tests:
+          - unique:
+              severity: warn
+          - not_null
+      - name: name
+      - name: price
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+      - name: quantity
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+
   - name: stg_public__promos
+    columns:
+      - name: id
+      - name: promo_id
+        tests:
+          - unique:
+              severity: warn
+          - not_null
+      - name: discount
+      - name: status
+        tests:
+          - accepted_values:
+              values: ['inactive', 'active']
+        
   - name: stg_public__users
+    columns:
+      - name: id
+      - name: user_id
+        tests:
+          - unique:
+              severity: warn
+          - not_null
+      - name: first_name
+      - name: last_name
+      - name: email
+      - name: phone_number
+      - name: created_at
+      - name: updated_at
+      - name: address_id

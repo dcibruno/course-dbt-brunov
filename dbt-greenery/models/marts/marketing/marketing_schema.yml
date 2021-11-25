@@ -2,4 +2,54 @@ version: 2
 
 models:
   - name: dim_user_facts
+    tests:
+      - dbt_utils.expression_is_true:
+          expression: "total_sum_of_discount < total_spent"
+    columns:
+      - name: user_id
+        tests:
+          - unique:
+              severity: warn
+          - not_null
+      - name: first_name
+      - name: last_name
+      - name: email
+      - name: phone_number
+      - name: created_at
+      - name: updated_at
+      - name: address_id
+      - name: first_order_id
+      - name: last_order_id
+      - name: purchase_recency
+      - name: customer_tenure
+      - name: count_of_orders
+      - name: customer_new_v_repeat
+        tests:
+          - accepted_values:
+              values: ['New', 'Repeat']
+      - name: total_spent
+      - name: count_of_events
+      - name: count_of_distinct_sessions
+      - name: count_of_page_views
+      - name: count_of_add_to_carts
+      - name: count_of_delete_from_carts
+      - name: count_of_checkouts
+      - name: count_of_packages_shipped
+      - name: abandoned_cart_rate
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: "<= 1"
+      - name: count_of_orders_w_coupon
+      - name: count_of_orders_wo_coupon
+      - name: total_sum_of_discount
+
   - name: int_user_coupons_usage
+    columns:
+      - name: user_id
+        tests:
+          - unique:
+              severity: warn
+          - not_null
+      - name: count_of_orders_w_coupon
+      - name: count_of_orders_wo_coupon
+      - name: total_sum_of_discount
