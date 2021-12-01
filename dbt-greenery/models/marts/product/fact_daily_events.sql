@@ -1,7 +1,6 @@
 {{
     config(
-        materialized = 'table',
-        unique_key = 'created_date'
+        materialized = 'table'
         )
 }}
 

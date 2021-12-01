@@ -1,7 +1,6 @@
 {{
     config(
-        materialized = 'table',
-        unique_key = 'address_id'
+        materialized = 'table'
         )
 }}
 

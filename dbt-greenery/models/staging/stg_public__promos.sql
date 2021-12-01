@@ -1,7 +1,6 @@
 {{
     config(
-        materialized = 'table',
-        unique_key = 'promo_id'
+        materialized = 'table'
         )
 }}
 

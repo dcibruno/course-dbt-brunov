@@ -1,7 +1,6 @@
 {{
     config(
-        materialized = 'table',
-        unique_key = 'user_id'
+        materialized = 'table'
         )
 }}
 
@@ -24,12 +23,12 @@ with user_facts as (
         , dim_users.total_spent
         , user_events.count_of_events
         , user_events.count_of_distinct_sessions
-        , user_events.count_of_page_views
-        , user_events.count_of_add_to_carts
-        , user_events.count_of_delete_from_carts
-        , user_events.count_of_checkouts
-        , user_events.count_of_packages_shipped
-        , (user_events.count_of_add_to_carts - user_events.count_of_checkouts) / nullif(user_events.count_of_add_to_carts, 0) as abandoned_cart_rate
+        , user_events.count_of_page_view
+        , user_events.count_of_add_to_cart
+        , user_events.count_of_delete_from_cart
+        , user_events.count_of_checkout
+        , user_events.count_of_package_shipped
+        , (user_events.count_of_add_to_cart - user_events.count_of_checkout) / nullif(user_events.count_of_add_to_cart, 0) as abandoned_cart_rate
         , user_coupons_usage.count_of_orders_w_coupon
         , user_coupons_usage.count_of_orders_wo_coupon
         , user_coupons_usage.total_sum_of_discount
@@ -58,11 +57,11 @@ select
     , total_spent
     , count_of_events
     , count_of_distinct_sessions
-    , count_of_page_views
-    , count_of_add_to_carts
-    , count_of_delete_from_carts
-    , count_of_checkouts
-    , count_of_packages_shipped
+    , count_of_page_view
+    , count_of_add_to_cart
+    , count_of_delete_from_cart
+    , count_of_checkout
+    , count_of_package_shipped
     , abandoned_cart_rate
     , count_of_orders_w_coupon
     , count_of_orders_wo_coupon

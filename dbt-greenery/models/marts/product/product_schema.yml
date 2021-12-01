@@ -3,3 +3,4 @@ version: 2
 models:
   - name: fact_daily_events
   - name: int_user_events
+  - name: fact_daily_product_events
