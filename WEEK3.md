@@ -12,7 +12,7 @@
 
 - R: 15,43%
 
-### Q1: What is our conversion rate by product?
+### Q2: What is our conversion rate by product?
 - Query
 ```
     select
