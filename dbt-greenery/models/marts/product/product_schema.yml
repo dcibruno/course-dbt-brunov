@@ -4,3 +4,4 @@ models:
   - name: fact_daily_events
   - name: int_user_events
   - name: fact_daily_product_events
+  - name: fact_product_funnel
